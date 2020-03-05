@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import "./App.css"
+const menu = [{name:"Home"},{name:"Services",value:["For entrepreur ","For Students", "For  hobbyists"]},{name : "Contact"}]
+class App extends Component {
+  state = { 
+    display : false
+   }
+ Show =()=> {
+   console.log("show")
+   this.setState({
+     display:!this.state.display
+   })
+ }
+  render() {
+    return ( 
+      <div className="total">
+      
+      {menu.map((el,i)=><div  key= {i}>
+            {el.value ? <div>
+              
+             <p onClick={this.Show} >  {el.name}</p>
+                {el.value.map((el)=><ul className={ this.state.display ? "display" : "hide"}>
+                <li className="border">{el}</li>
+                </ul>)}
+            </div>:
+            <div>
+              {el.name}
+              </div>}
+    </div>)}
+          
+      </div>);
+  }
 }
-
+ 
 export default App;
